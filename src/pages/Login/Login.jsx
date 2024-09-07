@@ -1,40 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-     const [email, setEmail] = useState('');
-     const [password, setPassword] = useState('');
+     // const [email, setEmail] = useState('');
+     // const [password, setPassword] = useState('');
 
-     const handleEmailChange = (e) => {
-          setEmail(e.target.value);
+     const handleLogin = event => {
+          event.preventDefault();
+
+          const form = event.target;
+          const email = form.email.value;
+          const password = form.password.value;
+          console.log(email, password);
      };
 
-     const handlePasswordChange = (e) => {
-          setPassword(e.target.value);
-     };
+     // const handleEmailChange = (e) => {
+     //      setEmail(e.target.value);
+     // };
 
-     const handleSubmit = (e) => {
-          e.preventDefault();
-     };
+     // const handlePasswordChange = (e) => {
+     //      setPassword(e.target.value);
+     // };
 
      const handleGoogleLogin = () => {
      };
 
      return (
-          <div className="flex justify-center items-center h-screen bg-gray-100">
+          <div className="flex justify-center items-center pt-6 bg-gray-100">
                <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
                     <h2 className="text-2xl font-bold text-center text-gray-700">Login to RestNest</h2>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleLogin} className="space-y-4">
                          <div>
                               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                    Email
                               </label>
                               <input
                                    type="email"
+                                   name='email'
                                    id="email"
+                                   placeholder='Email'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   value={email}
-                                   onChange={handleEmailChange}
+                                   // value={email}
+                                   // onChange={handleEmailChange}
                                    required
                               />
                          </div>
@@ -45,9 +52,11 @@ const Login = () => {
                               <input
                                    type="password"
                                    id="password"
+                                   name='password'
+                                   placeholder='Password'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   value={password}
-                                   onChange={handlePasswordChange}
+                                   // value={password}
+                                   // onChange={handlePasswordChange}
                                    required
                               />
                          </div>

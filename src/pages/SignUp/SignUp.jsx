@@ -1,36 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
-     const [name, setName] = useState('');
-     const [email, setEmail] = useState('');
-     const [password, setPassword] = useState('');
-     const [confirmPassword, setConfirmPassword] = useState('');
+     // const [name, setName] = useState('');
+     // const [email, setEmail] = useState('');
+     // const [password, setPassword] = useState('');
+     // const [confirmPassword, setConfirmPassword] = useState('');
 
-     const handleNameChange = (e) => {
-          setName(e.target.value);
-     };
+     const handleSignUp = event => {
+          event.preventDefault();
 
-     const handleEmailChange = (e) => {
-          setEmail(e.target.value);
-     };
+          const form = event.target;
+          const name = form.name.value;
+          const email = form.email.value;
+          const password = form.password.value;
+          const confirmPassword = form.confirmPassword.value;
+          console.log(name, email, password);          
 
-     const handlePasswordChange = (e) => {
-          setPassword(e.target.value);
-     };
-
-     const handleConfirmPasswordChange = (e) => {
-          setConfirmPassword(e.target.value);
-     };
-
-     const handleSubmit = (e) => {
-          e.preventDefault();
           if (password !== confirmPassword) {
                alert('Passwords do not match');
                return;
           }
           // Add sign-up logic here
      };
+
+     // const handleNameChange = (e) => {
+     //      setName(e.target.value);
+     // };
+
+     // const handleEmailChange = (e) => {
+     //      setEmail(e.target.value);
+     // };
+
+     // const handlePasswordChange = (e) => {
+     //      setPassword(e.target.value);
+     // };
+
+     // const handleConfirmPasswordChange = (e) => {
+     //      setConfirmPassword(e.target.value);
+     // };
 
      const handleGoogleSignUp = () => {
           // Add Google sign-up logic here
@@ -41,10 +49,10 @@ const SignUp = () => {
      };
 
      return (
-          <div className="flex justify-center items-center h-screen bg-gray-100">
+          <div className="flex justify-center items-center pt-6 bg-gray-100">
                <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
                     <h2 className="text-2xl font-bold text-center text-gray-700">Sign Up for RestNest</h2>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSignUp} className="space-y-4">
                          <div>
                               <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                                    Name
@@ -52,9 +60,11 @@ const SignUp = () => {
                               <input
                                    type="text"
                                    id="name"
+                                   name='name'
+                                   placeholder='Name'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   value={name}
-                                   onChange={handleNameChange}
+                                   // value={name}
+                                   // onChange={handleNameChange}
                                    required
                               />
                          </div>
@@ -65,9 +75,11 @@ const SignUp = () => {
                               <input
                                    type="email"
                                    id="email"
+                                   name='email'
+                                   placeholder='Email'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   value={email}
-                                   onChange={handleEmailChange}
+                                   // value={email}
+                                   // onChange={handleEmailChange}
                                    required
                               />
                          </div>
@@ -78,9 +90,11 @@ const SignUp = () => {
                               <input
                                    type="password"
                                    id="password"
+                                   name='password'
+                                   placeholder='Password'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   value={password}
-                                   onChange={handlePasswordChange}
+                                   // value={password}
+                                   // onChange={handlePasswordChange}
                                    required
                               />
                          </div>
@@ -91,9 +105,11 @@ const SignUp = () => {
                               <input
                                    type="password"
                                    id="confirmPassword"
+                                   name='confirmPassword'
+                                   placeholder='Confirm Password'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   value={confirmPassword}
-                                   onChange={handleConfirmPasswordChange}
+                                   // value={confirmPassword}
+                                   // onChange={handleConfirmPasswordChange}
                                    required
                               />
                          </div>
