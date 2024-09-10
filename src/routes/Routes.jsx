@@ -4,6 +4,7 @@ import Main from "../layouts/Main";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Book from "../pages/Book/Book";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
      {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
           children: [
                {
                     path: '/',
-                    element: <Home/>
+                    element: <Home />
                },
                {
                     path: 'login',
@@ -20,11 +21,13 @@ const router = createBrowserRouter([
                },
                {
                     path: 'signup',
-                    element: <SignUp/>
+                    element: <SignUp />
                },
                {
                     path: 'book',
-                    element: <Book/>
+                    element: <PrivateRoute>
+                         <Book />
+                    </PrivateRoute>
                },//assistant marketing officer
           ]
      }
