@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../routes/AuthProviders';
 
 const SignUp = () => {
      // const [name, setName] = useState('');
      // const [email, setEmail] = useState('');
      // const [password, setPassword] = useState('');
      // const [confirmPassword, setConfirmPassword] = useState('');
+
+     const { user, createUser } = useContext(AuthContext);
+
+     console.log(user,);
 
      const handleSignUp = event => {
           event.preventDefault();
@@ -21,7 +26,16 @@ const SignUp = () => {
                alert('Passwords do not match');
                return;
           }
-          // Add sign-up logic here
+
+          createUser(email, password)
+               .then(result => {
+                    const loggedUser = result.user;
+                    console.log(loggedUser);
+                    form.reset();
+               })
+               .catch(error => {
+               console.log(error);
+          })
      };
 
      // const handleNameChange = (e) => {
@@ -131,7 +145,7 @@ const SignUp = () => {
                     <div className="flex items-center justify-between mt-4">
                          <button
                               onClick={handleGithubSignUp}
-                              className="w-full py-2 mt-4 text-white bg-gray-700 rounded-md hover:bg-gray-800"
+                              className="w-full py-2 mt-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
                          >
                               Sign Up with GitHub
                          </button>

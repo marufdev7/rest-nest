@@ -82,6 +82,14 @@ const Login = () => {
                               Login with Google
                          </button>
                     </div>
+                    <div className="flex items-center justify-between mt-4">
+                         <button
+                              // onClick={handleGithubSignUp}
+                              className="w-full py-2 mt-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
+                         >
+                              Login with GitHub
+                         </button>
+                    </div>
                     <div className="text-center mt-4">
                          <p className="text-sm text-gray-700">
                               New to RestNest?
