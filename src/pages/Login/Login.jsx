@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../routes/AuthProviders';
 
 const Login = () => {
      // const [email, setEmail] = useState('');
      // const [password, setPassword] = useState('');
+
+     const { signIn } = useContext(AuthContext);
 
      const handleLogin = event => {
           event.preventDefault();
@@ -12,6 +15,16 @@ const Login = () => {
           const email = form.email.value;
           const password = form.password.value;
           console.log(email, password);
+
+          signIn(email, password)
+               .then(result => {
+                    const loggedUser = result.user;
+                    console.log(loggedUser);
+                    form.reset();
+               })
+               .catch(error => {
+               console.error(error);
+          })
      };
 
      // const handleEmailChange = (e) => {
@@ -26,7 +39,7 @@ const Login = () => {
      };
 
      return (
-          <div className="flex justify-center items-center pt-6 bg-gray-100">
+          <div className="flex justify-center items-center pt-8 pb-8 bg-gray-100">
                <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
                     <h2 className="text-2xl font-bold text-center text-gray-700">Login to RestNest</h2>
                     <form onSubmit={handleLogin} className="space-y-4">
