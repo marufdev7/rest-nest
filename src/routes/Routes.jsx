@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import Main from "../layouts/Main";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import Book from "../pages/Book/Book";
 
 const router = createBrowserRouter([
      {
@@ -11,16 +12,20 @@ const router = createBrowserRouter([
           children: [
                {
                     path: '/',
-                    element: <Home></Home>
+                    element: <Home/>
                },
                {
                     path: 'login',
-                    element: <Login></Login>
+                    element: <Login />
                },
                {
                     path: 'signup',
-                    element: <SignUp></SignUp>
-               }//assistant marketing officer
+                    element: <SignUp/>
+               },
+               {
+                    path: 'book',
+                    element: <Book/>
+               },//assistant marketing officer
           ]
      }
 
