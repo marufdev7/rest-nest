@@ -6,7 +6,7 @@ const Login = () => {
      // const [email, setEmail] = useState('');
      // const [password, setPassword] = useState('');
 
-     const { signIn, signInWithGoogle } = useContext(AuthContext);
+     const { signIn, signInWithGoogle,signInWithGithub } = useContext(AuthContext);
 
      const handleLogin = event => {
           event.preventDefault();
@@ -44,6 +44,17 @@ const Login = () => {
                .catch(error => {
                     console.log(error);
                })
+     };
+
+     const handleGithubLogin = () => {
+          signInWithGithub()
+               .then(result => { 
+                    const loggedUser = result.user;
+                    console.log(loggedUser);
+               })
+               .catch(error => {
+               console.log(error);
+          })
      };
 
      return (
@@ -105,7 +116,7 @@ const Login = () => {
                     </div>
                     <div className="flex items-center justify-between mt-4">
                          <button
-                              // onClick={handleGithubLogin}
+                              onClick={handleGithubLogin}
                               className="w-full py-2 mt-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
                          >
                               Login with GitHub

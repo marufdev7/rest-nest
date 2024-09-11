@@ -43,9 +43,13 @@ const Header = () => {
                          <div>
                               {
                                    user ?
-                                        <> <span className='text-white font-semibold'>{user.email}</span> <button onClick={handleLogout} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                             Sign Out
-                                        </button>
+                                        <>
+                                             <span className='text-white font-semibold pr-3'>
+                                                  {user.displayName ? user.displayName : user.email}
+                                             </span>
+                                             <button onClick={handleLogout} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                                  Log Out
+                                             </button>
                                         </>
                                         : <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                                              <Link to='/login'>Login</Link>
