@@ -28,7 +28,7 @@ const SignUp = () => {
           createUser(email, password)
                .then(result => {
                     const loggedUser = result.user;
-                    console.log(loggedUser);
+                    // console.log(loggedUser);
                     form.reset();
                })
                .catch(error => {
@@ -56,7 +56,7 @@ const SignUp = () => {
           signInWithGoogle()
                .then(result => {
                     const loggedUser = result.user;
-                    console.log(loggedUser);
+                    // console.log(loggedUser);
                })
                .catch(error => {
                     console.log(error);
@@ -67,7 +67,7 @@ const SignUp = () => {
           signInWithGithub()
                .then(result => {
                     const loggedUser = result.user;
-                    console.log(loggedUser);
+                    // console.log(loggedUser);
                })
                .catch(error => {
                     console.log(error);
