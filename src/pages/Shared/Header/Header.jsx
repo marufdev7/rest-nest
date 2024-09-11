@@ -24,20 +24,23 @@ const Header = () => {
                               <Link to="/" className="text-gray-300 hover:text-white">
                                    Home
                               </Link>
-                              <Link to="/login" className="text-gray-300 hover:text-white">
-                                   Login
-                              </Link>
-                              <Link to="/signup" className="text-gray-300 hover:text-white">
-                                   Sign Up
-                              </Link>
                               <Link to="/book" className="text-gray-300 hover:text-white">
                                    Book
                               </Link>
                               {
-                                   user &&
-                                   <Link to="/profile" className="text-gray-300 hover:text-white">
-                                        Profile
-                                   </Link>
+                                   user ?
+                                        <Link to="/profile" className="text-gray-300 hover:text-white">
+                                             Profile
+                                        </Link>
+                                        :
+                                        <>
+                                             <Link to="/login" className="text-gray-300 hover:text-white">
+                                                  Login
+                                             </Link>
+                                             <Link to="/signup" className="text-gray-300 hover:text-white">
+                                                  Sign Up
+                                             </Link>
+                                        </>
                               }
                          </div>
                          <div>
