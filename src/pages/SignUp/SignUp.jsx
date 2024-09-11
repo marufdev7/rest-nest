@@ -8,19 +8,17 @@ const SignUp = () => {
      // const [password, setPassword] = useState('');
      // const [confirmPassword, setConfirmPassword] = useState('');
 
-     const { user, createUser } = useContext(AuthContext);
-
-     console.log(user,);
+     const { createUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
      const handleSignUp = event => {
           event.preventDefault();
 
           const form = event.target;
-          const name = form.name.value;
+          // const name = form.name.value;
           const email = form.email.value;
           const password = form.password.value;
           const confirmPassword = form.confirmPassword.value;
-          console.log(name, email, password);          
+          // console.log(name, email, password);
 
           if (password !== confirmPassword) {
                alert('Passwords do not match');
@@ -34,8 +32,8 @@ const SignUp = () => {
                     form.reset();
                })
                .catch(error => {
-               console.log(error);
-          })
+                    console.log(error);
+               })
      };
 
      // const handleNameChange = (e) => {
@@ -55,11 +53,25 @@ const SignUp = () => {
      // };
 
      const handleGoogleSignUp = () => {
-          // Add Google sign-up logic here
+          signInWithGoogle()
+               .then(result => {
+                    const loggedUser = result.user;
+                    console.log(loggedUser);
+               })
+               .catch(error => {
+                    console.log(error);
+               })
      };
 
      const handleGithubSignUp = () => {
-          // Add GitHub sign-up logic here
+          signInWithGithub()
+               .then(result => {
+                    const loggedUser = result.user;
+                    console.log(loggedUser);
+               })
+               .catch(error => {
+                    console.log(error);
+               })
      };
 
      return (
@@ -145,12 +157,12 @@ const SignUp = () => {
                     <div className="flex items-center justify-between mt-4">
                          <button
                               onClick={handleGithubSignUp}
-                              className="w-full py-2 mt-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
+                              className="w-full py-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
                          >
                               Sign Up with GitHub
                          </button>
                     </div>
-                    <div className="text-center mt-4">
+                    <div className="text-center">
                          <p className="text-sm text-gray-700">
                               Already have an account?{' '}
                               <Link to="/login" className="text-blue-500 hover:underline">

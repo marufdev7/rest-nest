@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../routes/AuthProviders';
 
 const Login = () => {
-     // const [email, setEmail] = useState('');
-     // const [password, setPassword] = useState('');
 
-     const { signIn, signInWithGoogle,signInWithGithub } = useContext(AuthContext);
+     const { signIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
      const handleLogin = event => {
           event.preventDefault();
@@ -23,17 +21,9 @@ const Login = () => {
                     form.reset();
                })
                .catch(error => {
-               console.error(error);
-          })
+                    console.error(error);
+               })
      };
-
-     // const handleEmailChange = (e) => {
-     //      setEmail(e.target.value);
-     // };
-
-     // const handlePasswordChange = (e) => {
-     //      setPassword(e.target.value);
-     // };
 
      const handleGoogleLogin = () => {
           signInWithGoogle()
@@ -48,13 +38,13 @@ const Login = () => {
 
      const handleGithubLogin = () => {
           signInWithGithub()
-               .then(result => { 
+               .then(result => {
                     const loggedUser = result.user;
                     console.log(loggedUser);
                })
                .catch(error => {
-               console.log(error);
-          })
+                    console.log(error);
+               })
      };
 
      return (
@@ -72,8 +62,6 @@ const Login = () => {
                                    id="email"
                                    placeholder='Email'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   // value={email}
-                                   // onChange={handleEmailChange}
                                    required
                               />
                          </div>
@@ -87,8 +75,6 @@ const Login = () => {
                                    name='password'
                                    placeholder='Password'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   // value={password}
-                                   // onChange={handlePasswordChange}
                                    required
                               />
                          </div>
@@ -109,7 +95,7 @@ const Login = () => {
                     <div className="flex items-center justify-between mt-4">
                          <button
                               onClick={handleGoogleLogin}
-                              className="w-full py-2 mt-4 text-white bg-sky-400 rounded-md hover:bg-sky-600"
+                              className="w-full py-2 text-white bg-sky-400 rounded-md hover:bg-sky-600"
                          >
                               Login with Google
                          </button>
@@ -122,7 +108,7 @@ const Login = () => {
                               Login with GitHub
                          </button>
                     </div>
-                    <div className="text-center mt-4">
+                    <div className="text-center">
                          <p className="text-sm text-gray-700">
                               New to RestNest?
                               <Link to="/signup" className="text-blue-500 hover:underline">
