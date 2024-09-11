@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Book from "../pages/Book/Book";
 import PrivateRoute from "./PrivateRoute";
+import Profile from "../pages/Shared/Profile/Profile";
 
 const router = createBrowserRouter([
      {
@@ -28,7 +29,13 @@ const router = createBrowserRouter([
                     element: <PrivateRoute>
                          <Book />
                     </PrivateRoute>
-               },//assistant marketing officer
+               },
+               {
+                    path: 'profile',
+                    element: <PrivateRoute>
+                         <Profile />
+                    </PrivateRoute>
+               }
           ]
      }
 

@@ -33,6 +33,12 @@ const Header = () => {
                               <Link to="/book" className="text-gray-300 hover:text-white">
                                    Book
                               </Link>
+                              {
+                                   user &&
+                                   <Link to="/profile" className="text-gray-300 hover:text-white">
+                                        Profile
+                                   </Link>
+                              }
                          </div>
                          <div>
                               {
