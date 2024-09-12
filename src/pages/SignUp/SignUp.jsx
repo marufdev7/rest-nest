@@ -23,7 +23,27 @@ const SignUp = () => {
           // console.log(name, email, password);
 
           if (password !== confirmPassword) {
-               alert('Passwords do not match');
+               toast.error('Passwords do not match');
+               return;
+          }
+          else if (!/[A-Za-z]/.test(password)) {
+               toast.error('Password must contain at least one uppercase or lowercase letter.');
+               return;
+          }
+          else if (!/\d/.test(password)) {
+               toast.error('Password must contain at least one number.');
+               return;
+          }
+          else if (!/[@$!%*?&]/.test(password)) {
+               toast.error('Password must contain at least one special character.');
+               return;
+          }
+          else if (/\s/.test(password)) {
+               toast.error('Password must not contain spaces.');
+               return;
+          }
+          else if (password.length < 8 || password.length > 16) {
+               toast.error('Password length should be between 8 and 16 characters.');
                return;
           }
 
@@ -170,7 +190,7 @@ const SignUp = () => {
                               Sign Up with GitHub
                          </button>
                     </div>
-                    <ToastContainer/>
+                    <ToastContainer />
                     <div className="text-center">
                          <p className="text-sm text-gray-700">
                               Already have an account?{' '}

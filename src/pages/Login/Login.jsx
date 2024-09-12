@@ -116,6 +116,7 @@ const Login = () => {
                               Login with GitHub
                          </button>
                     </div>
+                    <ToastContainer/>
                     <div className="text-center">
                          <p className="text-sm text-gray-700">
                               New to RestNest?
