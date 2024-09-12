@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../routes/AuthProviders';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
      // const [name, setName] = useState('');
@@ -29,10 +31,12 @@ const SignUp = () => {
                .then(result => {
                     const loggedUser = result.user;
                     // console.log(loggedUser);
+                    toast.success('Account created successfully');
                     form.reset();
                })
                .catch(error => {
                     console.log(error);
+                    toast.error('Error creating account');
                })
      };
 
@@ -57,9 +61,11 @@ const SignUp = () => {
                .then(result => {
                     const loggedUser = result.user;
                     // console.log(loggedUser);
+                    toast.success('Signed up with Google successfully!');
                })
                .catch(error => {
                     console.log(error);
+                    toast.error('Error signing up with Google');
                })
      };
 
@@ -68,9 +74,11 @@ const SignUp = () => {
                .then(result => {
                     const loggedUser = result.user;
                     // console.log(loggedUser);
+                    toast.success('Signed up with GitHub successfully!');
                })
                .catch(error => {
                     console.log(error);
+                    toast.error('Error signing up with GitHub');
                })
      };
 
@@ -162,6 +170,7 @@ const SignUp = () => {
                               Sign Up with GitHub
                          </button>
                     </div>
+                    <ToastContainer/>
                     <div className="text-center">
                          <p className="text-sm text-gray-700">
                               Already have an account?{' '}

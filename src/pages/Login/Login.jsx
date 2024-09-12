@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../routes/AuthProviders';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -18,10 +20,12 @@ const Login = () => {
                .then(result => {
                     const loggedUser = result.user;
                     // console.log(loggedUser);
+                    toast.success('Account login successfully');
                     form.reset();
                })
                .catch(error => {
                     console.error(error);
+                    toast.error('Error login account');
                })
      };
 
@@ -30,9 +34,11 @@ const Login = () => {
                .then(result => {
                     const loggedUser = result.user;
                     // console.log(loggedUser);
+                    toast.success('Signed in with Google successfully!');
                })
                .catch(error => {
                     console.log(error);
+                    toast.error('Error signing in with Google');
                })
      };
 
@@ -41,9 +47,11 @@ const Login = () => {
                .then(result => {
                     const loggedUser = result.user;
                     // console.log(loggedUser);
+                    toast.success('Signed in with Github successfully');
                })
                .catch(error => {
                     console.log(error);
+                    toast.error('Error signing in with Github')
                })
      };
 
