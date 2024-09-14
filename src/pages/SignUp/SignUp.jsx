@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../routes/AuthProviders';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { sendEmailVerification } from 'firebase/auth';
+import { sendEmailVerification, updateProfile } from 'firebase/auth';
 
 const SignUp = () => {
-     // const [name, setName] = useState('');
-     // const [email, setEmail] = useState('');
-     // const [password, setPassword] = useState('');
-     // const [confirmPassword, setConfirmPassword] = useState('');
 
      const { createUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
@@ -17,7 +13,7 @@ const SignUp = () => {
           event.preventDefault();
 
           const form = event.target;
-          // const name = form.name.value;
+          const name = form.name.value;
           const email = form.email.value;
           const password = form.password.value;
           const confirmPassword = form.confirmPassword.value;
@@ -51,15 +47,29 @@ const SignUp = () => {
           createUser(email, password)
                .then(result => {
                     const loggedUser = result.user;
-                    console.log(loggedUser);
+                    // console.log(loggedUser);
                     toast.success('Account created successfully');
                     form.reset();
                     verifyEmail(loggedUser);
+                    updateUserData(loggedUser, name)
                })
                .catch(error => {
                     console.log(error);
                     toast.error('Error creating account');
                })
+     };
+
+     const updateUserData = (user, name) => {
+          updateProfile(user, {
+               displayName: name,
+          })
+               .then(() => {
+                    // console.log('User name Updated');
+               })
+               .catch(error => {
+                    console.log(error);
+               }
+          )
      };
 
      const verifyEmail = user => {
@@ -69,22 +79,6 @@ const SignUp = () => {
                     toast.warn("Please varify your email");
                 })
      };
-
-     // const handleNameChange = (e) => {
-     //      setName(e.target.value);
-     // };
-
-     // const handleEmailChange = (e) => {
-     //      setEmail(e.target.value);
-     // };
-
-     // const handlePasswordChange = (e) => {
-     //      setPassword(e.target.value);
-     // };
-
-     // const handleConfirmPasswordChange = (e) => {
-     //      setConfirmPassword(e.target.value);
-     // };
 
      const handleGoogleSignUp = () => {
           signInWithGoogle()
@@ -127,8 +121,6 @@ const SignUp = () => {
                                    name='name'
                                    placeholder='Name'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   // value={name}
-                                   // onChange={handleNameChange}
                                    required
                               />
                          </div>
@@ -142,8 +134,6 @@ const SignUp = () => {
                                    name='email'
                                    placeholder='Email'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   // value={email}
-                                   // onChange={handleEmailChange}
                                    required
                               />
                          </div>
@@ -157,8 +147,6 @@ const SignUp = () => {
                                    name='password'
                                    placeholder='Password'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   // value={password}
-                                   // onChange={handlePasswordChange}
                                    required
                               />
                          </div>
@@ -172,8 +160,6 @@ const SignUp = () => {
                                    name='confirmPassword'
                                    placeholder='Confirm Password'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                                   // value={confirmPassword}
-                                   // onChange={handleConfirmPasswordChange}
                                    required
                               />
                          </div>
