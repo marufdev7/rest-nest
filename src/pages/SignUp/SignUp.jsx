@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../routes/AuthProviders';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { sendEmailVerification } from 'firebase/auth';
 
 const SignUp = () => {
      // const [name, setName] = useState('');
@@ -50,14 +51,23 @@ const SignUp = () => {
           createUser(email, password)
                .then(result => {
                     const loggedUser = result.user;
-                    // console.log(loggedUser);
+                    console.log(loggedUser);
                     toast.success('Account created successfully');
                     form.reset();
+                    verifyEmail(loggedUser);
                })
                .catch(error => {
                     console.log(error);
                     toast.error('Error creating account');
                })
+     };
+
+     const verifyEmail = user => {
+          sendEmailVerification(user)
+               .then((result) => {
+                    // console.log(result);
+                    toast.warn("Please varify your email");
+                })
      };
 
      // const handleNameChange = (e) => {
