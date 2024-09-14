@@ -1,14 +1,16 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../routes/AuthProviders';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { sendPasswordResetEmail } from 'firebase/auth';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
 
      const { signIn, signInWithGoogle, signInWithGithub, auth } = useContext(AuthContext);
      const emailRef = useRef();
+     const [show, setShow] = useState(false);
 
      const handleLogin = event => {
           event.preventDefault();
@@ -98,18 +100,24 @@ const Login = () => {
                                    required
                               />
                          </div>
-                         <div>
+                         <div className="relative">
                               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                                    Password
                               </label>
                               <input
-                                   type="password"
+                                   type={show ? "text" : "password"}
                                    id="password"
                                    name='password'
                                    placeholder='Password'
-                                   className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                                   className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 pr-10"
                                    required
                               />
+                              <span
+                                   className="absolute top-[25px] bottom-0 right-3 flex items-center cursor-pointer"
+                                   onClick={() => setShow(!show)}
+                              >
+                                   {show ? <FaEyeSlash /> : <FaEye />}
+                              </span>
                          </div>
                          <div className="flex items-center justify-between">
                               <button
