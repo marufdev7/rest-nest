@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../routes/AuthProviders';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +11,10 @@ const Login = () => {
      const { signIn, signInWithGoogle, signInWithGithub, auth } = useContext(AuthContext);
      const emailRef = useRef();
      const [show, setShow] = useState(false);
+     const navigate = useNavigate();
+     const location = useLocation();
+     // console.log(locaton);
+     const from = location.state?.from?.pathname || "/";
 
      const handleLogin = event => {
           event.preventDefault();
@@ -32,6 +36,7 @@ const Login = () => {
 
                     toast.success('Account login successfully');
                     form.reset();
+                    navigate(from, {replace: true});
                })
                .catch(error => {
                     console.error(error);

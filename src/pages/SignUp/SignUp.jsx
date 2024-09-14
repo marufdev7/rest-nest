@@ -69,7 +69,7 @@ const SignUp = () => {
                .catch(error => {
                     console.log(error);
                }
-          )
+               )
      };
 
      const verifyEmail = user => {
@@ -77,7 +77,7 @@ const SignUp = () => {
                .then((result) => {
                     // console.log(result);
                     toast.warn("Please varify your email");
-                })
+               })
      };
 
      const handleGoogleSignUp = () => {
@@ -173,7 +173,7 @@ const SignUp = () => {
                     <div className="flex items-center justify-between mt-4">
                          <button
                               onClick={handleGoogleSignUp}
-                              className="w-full py-2 mt-4 text-white bg-red-500 rounded-md hover:bg-red-600"
+                              className="w-full py-2 mt-4 text-white bg-sky-400 rounded-md hover:bg-sky-600"
                          >
                               Sign Up with Google
                          </button>
