@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../routes/AuthProviders';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 const Login = () => {
 
-     const { signIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+     const { signIn, signInWithGoogle, signInWithGithub, auth } = useContext(AuthContext);
+     const emailRef = useRef();
 
      const handleLogin = event => {
           event.preventDefault();
@@ -20,12 +22,34 @@ const Login = () => {
                .then(result => {
                     const loggedUser = result.user;
                     // console.log(loggedUser);
+
+                    if (!loggedUser.emailVerified) {
+                         toast.warning('Your email is not verified, Please verify your email');
+                         return;
+                    }
+
                     toast.success('Account login successfully');
                     form.reset();
                })
                .catch(error => {
                     console.error(error);
                     toast.error('Error login account');
+               })
+     };
+
+     const handleResetPassword = () => {
+          const email = emailRef.current.value;
+          if (!email) {
+               toast.warning('Please enter your email for reset password');
+               return;
+          }
+
+          sendPasswordResetEmail(auth, email)
+               .then(() => {
+                    toast.success('Please check your email');
+               })
+               .catch(error => {
+                    console.log(error.message);
                })
      };
 
@@ -68,6 +92,7 @@ const Login = () => {
                                    type="email"
                                    name='email'
                                    id="email"
+                                   ref={emailRef}
                                    placeholder='Email'
                                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
                                    required
@@ -96,9 +121,9 @@ const Login = () => {
                          </div>
                     </form>
                     <div className="flex items-center justify-between mt-4">
-                         <Link to="/forgot-password" className="text-sm text-blue-500 hover:underline">
+                         <button onClick={handleResetPassword} className="text-sm text-blue-500 hover:underline">
                               Forgot Password?
-                         </Link>
+                         </button>
                     </div>
                     <div className="flex items-center justify-between mt-4">
                          <button
@@ -116,7 +141,7 @@ const Login = () => {
                               Login with GitHub
                          </button>
                     </div>
-                    <ToastContainer/>
+                    <ToastContainer />
                     <div className="text-center">
                          <p className="text-sm text-gray-700">
                               New to RestNest?
