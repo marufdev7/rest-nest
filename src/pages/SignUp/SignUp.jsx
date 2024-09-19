@@ -165,7 +165,7 @@ const SignUp = () => {
                          </div>
                          <button
                               type="submit"
-                              className="w-full py-2 mt-4 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                              className="w-full mt-2 border py-2 rounded-md border-gray-700 bg-gray-100 hover:bg-gray-600 hover:text-white flex items-center justify-center"
                          >
                               Sign Up
                          </button>
@@ -173,7 +173,7 @@ const SignUp = () => {
                     <div className="flex items-center justify-between mt-4">
                          <button
                               onClick={handleGoogleSignUp}
-                              className="w-full py-2 mt-4 text-white bg-sky-400 rounded-md hover:bg-sky-600"
+                              className="w-full mt-2 border rounded-md py-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white flex items-center justify-center"
                          >
                               Sign Up with Google
                          </button>
@@ -181,7 +181,7 @@ const SignUp = () => {
                     <div className="flex items-center justify-between mt-4">
                          <button
                               onClick={handleGithubSignUp}
-                              className="w-full py-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
+                              className="w-full mt-2 border rounded-md py-2 border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white flex items-center justify-center"
                          >
                               Sign Up with GitHub
                          </button>

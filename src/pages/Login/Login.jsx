@@ -4,7 +4,7 @@ import { AuthContext } from '../../routes/AuthProviders';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
 
@@ -36,7 +36,7 @@ const Login = () => {
 
                     toast.success('Account login successfully');
                     form.reset();
-                    navigate(from, {replace: true});
+                    navigate(from, { replace: true });
                })
                .catch(error => {
                     console.error(error);
@@ -127,7 +127,7 @@ const Login = () => {
                          <div className="flex items-center justify-between">
                               <button
                                    type="submit"
-                                   className="w-full py-2 mt-4 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                                   className="w-full mt-2 border py-2 rounded-md border-gray-700 bg-gray-100 hover:bg-gray-600 hover:text-white flex items-center justify-center"
                               >
                                    Login
                               </button>
@@ -141,17 +141,17 @@ const Login = () => {
                     <div className="flex items-center justify-between mt-4">
                          <button
                               onClick={handleGoogleLogin}
-                              className="w-full py-2 text-white bg-sky-400 rounded-md hover:bg-sky-600"
+                              className="w-full mt-2 border rounded-md py-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white flex items-center justify-center"
                          >
-                              Login with Google
+                              <FaGoogle className="mr-2" /> Login with Google
                          </button>
                     </div>
                     <div className="flex items-center justify-between mt-4">
                          <button
                               onClick={handleGithubLogin}
-                              className="w-full py-2 mt-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
+                              className="w-full mt-2 border rounded-md py-2 border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white flex items-center justify-center"
                          >
-                              Login with GitHub
+                              <FaGithub className="mr-2" /> Login with GitHub
                          </button>
                     </div>
                     <ToastContainer />
