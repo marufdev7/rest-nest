@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
 
@@ -88,6 +89,10 @@ const Login = () => {
 
      return (
           <div className="flex justify-center items-center pt-8 pb-8 bg-gray-100">
+               <Helmet>
+                    <title>RestNest | Login</title>
+                    <meta name="description" content="Login to your RestNest account and enjoy a world of luxury and comfort." />
+               </Helmet>
                <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
                     <h2 className="text-2xl font-bold text-center text-gray-700">Login to RestNest</h2>
                     <form onSubmit={handleLogin} className="space-y-4">

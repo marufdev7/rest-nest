@@ -4,6 +4,7 @@ import singleRoom from '../../assets/single-room.jpeg';
 import coupleRoom from '../../assets/couple-room.jpg';
 import familyRoom from '../../assets/family-room.jpg';
 import RoomDetails from '../RoomDetails/RoomDetails';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
 
@@ -37,6 +38,10 @@ const Home = () => {
 
      return (
           <>
+               <Helmet>
+                    <title>RestNest | Home</title>
+                    <meta name="description" content="Welcome to RestNest, your global icon of luxury. Explore our exquisite rooms and experience unparalleled comfort." />
+               </Helmet>
                <div className="relative">
                     <img
                          src={hotelView}

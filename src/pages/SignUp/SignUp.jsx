@@ -4,6 +4,7 @@ import { AuthContext } from '../../routes/AuthProviders';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { sendEmailVerification, updateProfile } from 'firebase/auth';
+import { Helmet } from 'react-helmet-async';
 
 const SignUp = () => {
 
@@ -108,6 +109,10 @@ const SignUp = () => {
 
      return (
           <div className="flex justify-center items-center pt-8 pb-8 bg-gray-100">
+               <Helmet>
+                    <title>RestNest | Sign Up</title>
+                    <meta name="description" content="Create an account on RestNest and enjoy exclusive benefits. Sign up now!" />
+               </Helmet>
                <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-md rounded-lg">
                     <h2 className="text-2xl font-bold text-center text-gray-700">Sign Up for RestNest</h2>
                     <form onSubmit={handleSignUp} className="space-y-4">
